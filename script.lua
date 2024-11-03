@@ -158,8 +158,8 @@ local function GOZIN_fake_script() -- Main.Buttons
 		if Player and Player.Character then
 			local Humanoid = Player.Character:FindFirstChild("Humanoid")
 			if Humanoid then
-				VistName = UserName.Text
 				GiveNotification("Now Vist Player @"..VistName)
+				VistName = UserName.Text
 				CurrentCamera.CameraSubject = Humanoid
 				
 				-- Listen for the Humanoid's Died event to reset the camera
@@ -168,10 +168,10 @@ local function GOZIN_fake_script() -- Main.Buttons
 					resetCameraToLocalPlayer()
 				end)
 			else
-				print("Humanoid not found for player @"..UserName.Text)
+				GiveNotification("Humanoid not found for player @"..UserName.Text)
 			end
 		else
-			print("Player not found or character not loaded for @"..UserName.Text)
+			GiveNotification("Player not found or character not loaded for @"..UserName.Text)
 		end
 	end)
 	
