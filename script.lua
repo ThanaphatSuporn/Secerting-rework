@@ -81,7 +81,7 @@ UnviewButton.TextWrapped = true
 
 -- Scripts:
 
-local function RVEFBTD_fake_script() -- Main.SmoothDrag 
+local function BMLB_fake_script() -- Main.SmoothDrag 
 	local script = Instance.new('LocalScript', Main)
 
 	local Drag = script.Parent
@@ -124,8 +124,8 @@ local function RVEFBTD_fake_script() -- Main.SmoothDrag
 		end)
 	
 end
-coroutine.wrap(RVEFBTD_fake_script)()
-local function BBPLK_fake_script() -- Main.Buttons 
+coroutine.wrap(BMLB_fake_script)()
+local function GOZIN_fake_script() -- Main.Buttons 
 	local script = Instance.new('LocalScript', Main)
 
 	local MainFrame = script.Parent
@@ -136,6 +136,23 @@ local function BBPLK_fake_script() -- Main.Buttons
 	local PlayerLocal = game:GetService("Players").LocalPlayer
 	local CurrentCamera = workspace.CurrentCamera
 	
+	local function resetCameraToLocalPlayer()
+		if PlayerLocal.Character and PlayerLocal.Character:FindFirstChild("Humanoid") then
+			CurrentCamera.CameraSubject = PlayerLocal.Character.Humanoid
+		else
+			print("Local player's character or humanoid not found")
+		end
+		VistName = ""
+	end
+	
+	function GiveNotification(Text)
+		game.StarterGui:SetCore("SendNotification", {
+			Title = "Secerting Rework",
+			Text = Text,
+			Duration = 5,
+		})
+	end
+	
 	ViewButton.MouseButton1Click:Connect(function()
 		local Player = game.Players:FindFirstChild(UserName.Text)
 		if Player and Player.Character then
@@ -144,6 +161,12 @@ local function BBPLK_fake_script() -- Main.Buttons
 				VistName = UserName.Text
 				print("Now View To player @"..VistName.." !")
 				CurrentCamera.CameraSubject = Humanoid
+				
+				-- Listen for the Humanoid's Died event to reset the camera
+				Humanoid.Died:Connect(function()
+					GiveNotification("Viewed player died, resetting camera.")
+					resetCameraToLocalPlayer()
+				end)
 			else
 				print("Humanoid not found for player @"..UserName.Text)
 			end
@@ -153,13 +176,8 @@ local function BBPLK_fake_script() -- Main.Buttons
 	end)
 	
 	UnviewButton.MouseButton1Click:Connect(function()
-		print("UnView Player!")
-		if PlayerLocal.Character and PlayerLocal.Character:FindFirstChild("Humanoid") then
-			CurrentCamera.CameraSubject = PlayerLocal.Character.Humanoid
-		else
-			print("Local player's character or humanoid not found")
-		end
-		VistName = ""
+		GiveNotification("UnView Player")
+		resetCameraToLocalPlayer()
 	end)
 end
-coroutine.wrap(BBPLK_fake_script)()
+coroutine.wrap(GOZIN_fake_script)()
