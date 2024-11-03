@@ -145,7 +145,7 @@ local function GOZIN_fake_script() -- Main.Buttons
 		VistName = ""
 	end
 	
-	local function GiveNotification(Text)
+	local function GiveNotification(Text:Text)
 		game.StarterGui:SetCore("SendNotification", {
 			Title = "Secerting Rework",
 			Text = Text,
