@@ -81,7 +81,7 @@ UnviewButton.TextWrapped = true
 
 -- Scripts:
 
-local function IICKCPJ_fake_script() -- Main.SmoothDrag 
+local function RVEFBTD_fake_script() -- Main.SmoothDrag 
 	local script = Instance.new('LocalScript', Main)
 
 	local Drag = script.Parent
@@ -124,8 +124,8 @@ local function IICKCPJ_fake_script() -- Main.SmoothDrag
 		end)
 	
 end
-coroutine.wrap(IICKCPJ_fake_script)()
-local function VYEUO_fake_script() -- Main.Buttons 
+coroutine.wrap(RVEFBTD_fake_script)()
+local function BBPLK_fake_script() -- Main.Buttons 
 	local script = Instance.new('LocalScript', Main)
 
 	local MainFrame = script.Parent
@@ -136,23 +136,30 @@ local function VYEUO_fake_script() -- Main.Buttons
 	local PlayerLocal = game:GetService("Players").LocalPlayer
 	local CurrentCamera = workspace.CurrentCamera
 	
-	
 	ViewButton.MouseButton1Click:Connect(function()
-		if game.Players:FindFirstChild(UserName.Text) then
-			VistName = UserName.Text
-			print("Now View To player @"..VistName.." !")
-			local Player = game.Players:FindFirstChild(UserName.Text)
-			local Character = Player.Character
-			local Humanoid = Character:FindFirstChild("Humanoid")
-			CurrentCamera.CameraSubject = Humanoid
+		local Player = game.Players:FindFirstChild(UserName.Text)
+		if Player and Player.Character then
+			local Humanoid = Player.Character:FindFirstChild("Humanoid")
+			if Humanoid then
+				VistName = UserName.Text
+				print("Now View To player @"..VistName.." !")
+				CurrentCamera.CameraSubject = Humanoid
+			else
+				print("Humanoid not found for player @"..UserName.Text)
+			end
+		else
+			print("Player not found or character not loaded for @"..UserName.Text)
 		end
 	end)
 	
-	
 	UnviewButton.MouseButton1Click:Connect(function()
 		print("UnView Player!")
-		CurrentCamera.CameraSubject = PlayerLocal.Character.Humanoid
+		if PlayerLocal.Character and PlayerLocal.Character:FindFirstChild("Humanoid") then
+			CurrentCamera.CameraSubject = PlayerLocal.Character.Humanoid
+		else
+			print("Local player's character or humanoid not found")
+		end
 		VistName = ""
 	end)
 end
-coroutine.wrap(VYEUO_fake_script)()
+coroutine.wrap(BBPLK_fake_script)()
