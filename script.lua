@@ -145,7 +145,7 @@ local function GOZIN_fake_script() -- Main.Buttons
 		VistName = ""
 	end
 	
-	function GiveNotification(Text)
+	local function GiveNotification(Text)
 		game.StarterGui:SetCore("SendNotification", {
 			Title = "Secerting Rework",
 			Text = Text,
@@ -159,7 +159,7 @@ local function GOZIN_fake_script() -- Main.Buttons
 			local Humanoid = Player.Character:FindFirstChild("Humanoid")
 			if Humanoid then
 				VistName = UserName.Text
-				print("Now View To player @"..VistName.." !")
+				GiveNotification("Now Vist Player @"..VistName)
 				CurrentCamera.CameraSubject = Humanoid
 				
 				-- Listen for the Humanoid's Died event to reset the camera
