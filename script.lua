@@ -203,7 +203,6 @@ local function QDRRBL_fake_script() -- Main.FunctionButton
 		Main.Name = "Main"
 		Main.Parent = h
 		Main.Active = true
-		Main.Draggable = true
 		Main.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		Main.BorderSizePixel = 0
 		Main.Position = UDim2.new(0.174545452, 0, 0.459574461, 0)
