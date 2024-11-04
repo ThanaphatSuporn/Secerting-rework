@@ -146,7 +146,7 @@ local function QDRRBL_fake_script() -- Main.FunctionButton
 		ButtonsFolder.twoButton.Text = "Fe fling Gui"
 	end)
 	
-	ButtonsFolder.OneButton.MouseButton1Click:Connect(function()
+	ButtonsFolder.twoButton.MouseButton1Click:Connect(function()
 		local lp = game:FindService("Players").LocalPlayer
 	
 		local function gplr(String)
